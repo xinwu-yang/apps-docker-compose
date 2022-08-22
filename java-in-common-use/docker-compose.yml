@@ -1,0 +1,37 @@
+version: '3.0'
+services:
+  server:
+    image: registry.cn-chengdu.aliyuncs.com/yousinnmu/serverjre:rockylinux8
+    container_name: vis-java
+    restart: always
+    volumes:
+      - /home/dragonwell-8.11.12:/usr/local/jdk
+      - /home/visualization:/app
+    ports:
+      - 8082:8080
+  web:
+    image: registry.cn-chengdu.aliyuncs.com/yousinnmu/nginx-spa:stable
+    container_name: vis-web
+    restart: always
+    volumes:
+      - /home/visualization/dist:/usr/share/nginx/html
+    ports:
+      - 81:80
+  minio:
+    image: minio/minio:latest
+    container_name: vis-minio
+    ports:
+      - 9000:9000
+      - 9001:9001
+    restart: always
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ACCESS_KEY: admin
+      MINIO_SECRET_KEY: chengxun #大于等于8位
+    logging:
+      options:
+        max-size: "50M" # 最大文件上传限制
+        max-file: "10"
+      driver: json-file
+    volumes:
+      - /home/visualization/minio-data:/data # 映射文件路径

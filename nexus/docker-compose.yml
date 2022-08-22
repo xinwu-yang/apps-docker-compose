@@ -1,0 +1,11 @@
+version: '3.1'
+services:
+  verdaccio:
+    image: sonatype/nexus3:3.41.0
+    container_name: nexus3
+    privileged: true
+    restart: always
+    ports:
+      - 8081:8081
+    volumes:
+      - ./nexus-data:/nexus-data
