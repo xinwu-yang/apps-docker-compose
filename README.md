@@ -1,3 +1,25 @@
 # Apps Docker Compose
 
-> 常用的应用docker-compose.yml
+common use app's docker-compose.yml
+
+already existing: 
+
+- gitea 
+
+- java-for-jar 
+
+- nexus 
+
+- reposilite 
+
+- rocketmq 
+
+- swagger-ui 
+
+- torna 
+
+- verdaccio 
+
+- xxl-job
+
+Enjoy it~🍻
