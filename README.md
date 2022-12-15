@@ -22,4 +22,6 @@ already existing:
 
 - xxl-job
 
+- docker-registry-ui
+
 Enjoy it~🍻

@@ -1,0 +1,29 @@
+version: "3"
+services:
+  registry:
+    image: registry:2.8.1
+    container_name: registry
+    restart: always
+    networks:
+      - devops
+    volumes:
+      - ./data/registry:/var/lib/registry
+      - ./config.yml:/etc/docker/registry/config.yml
+    ports:
+      - 5000:5000
+  registry-ui:
+    image: joxit/docker-registry-ui:latest
+    container_name: registry-ui
+    networks:
+      - devops
+    ports:
+      - 81:80
+    environment:
+      - REGISTRY_URL=http://25.30.15.86:5000
+      - DELETE_IMAGES=true
+      - SINGLE_REGISTRY=true
+    depends_on:
+      - registry
+networks:
+  devops:
+    external: true
