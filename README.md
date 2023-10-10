@@ -24,4 +24,6 @@ already existing:
 
 - docker-registry-ui
 
+- dev-env (mini:verdaccio/mysql/redis)
+
 Enjoy it~🍻
