@@ -26,4 +26,10 @@ already existing:
 
 - dev-env (mini:verdaccio/mysql/redis)
 
+```
+verdaccio default user (admin:admin)
+mysql default user (root:chengxun)
+redis default password (redis@123)
+```
+
 Enjoy it~🍻
