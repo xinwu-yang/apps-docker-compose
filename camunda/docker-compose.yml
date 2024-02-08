@@ -1,0 +1,29 @@
+version: "3"
+services:
+  camunda:
+    image: camunda/camunda-bpm-platform:run-latest
+    container_name: camunda
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./default.yml:/camunda/configuration/default.yml
+    links:
+      - camunda-db
+    depends_on:
+      - camunda-db
+  camunda-db:
+    image: postgres:16.1
+    container_name: camunda-db
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_PASSWORD=chengxun
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      - PGDATA=/var/lib/postgresql/data/pgdata
+volumes:
+  pgdata:

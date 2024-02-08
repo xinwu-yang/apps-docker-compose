@@ -1,0 +1,10 @@
+version: "3"
+services:
+  mrdoc:
+    image: zmister/mrdoc:v7
+    container_name: mrdoc
+    restart: always
+    ports:
+      - 10086:10086
+    volumes:
+      - ./data:/app/MrDoc
